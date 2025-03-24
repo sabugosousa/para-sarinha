@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .text {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #333;
+      max-width: 500px;
+      margin: 0 auto;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    button {
+      background: #2980b9;
+      border: none;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    button:hover {
+      background: #1abc9c;
+    }
+
+    .emoji {
+      font-size: 2em;
+      margin-top: 10px;
+    }
+
+    /* Chuva de corações */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #e74c3c;
+      font-size: 20px;
+      animation: fall 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Música romântica de fundo -->
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio!
+  </audio>
+
+  <div class="container">
+    <h1>Amor da Minha Vida ❤️</h1>
+    
+    <!-- Foto do casal -->
+    <img src="imagens/img.jpeg" alt="Foto do Casal" class="photo" />
+
+    <div class="text">
+      <p id="declaracao"></p>
+
+      <h2>Quer casar comigo?</h2>
+
+      <div class="buttons" id="botoes">
+        <button id="btn-sim" onclick="responder('sim')">SIM! 💍</button>
+        <button id="btn-nao" onmouseover="moverBotao()">NÃO 😢</button>
+      </div>
+
+      <div id="resposta"></div>
+    </div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    // Efeito de digitação na declaração
+    const mensagem = "Desde o momento em que te conheci, meu mundo ficou mais bonito.\nVocê é meu amor, minha paz, minha inspiração.\n\nQuero passar todos os dias da minha vida ao seu lado!\nTe amo mais do que palavras podem explicar!";
+    const texto = document.getElementById("declaracao");
+    let index = 0;
+
+    function digitar() {
+      if (index < mensagem.length) {
+        texto.innerHTML += mensagem.charAt(index) === "\n" ? "<br>" : mensagem.charAt(index);
+        index++;
+        setTimeout(digitar, 50);
+      }
+    }
+
+    digitar();
+
+    // Resposta ao pedido
+    function responder(resposta) {
+      const respostaDiv = document.getElementById('resposta');
+
+      if (resposta === 'sim') {
+        respostaDiv.innerHTML = `
+          <p>EU SABIA!!! 💖<br>
+          Você acabou de me fazer a pessoa mais feliz do mundo!<br><br>
+          Mal posso esperar para viver uma vida inteira com você! 💍✨</p>
+          <div class="emoji">🎉🥂💑</div>
+        `;
+      } else {
+        respostaDiv.innerHTML = `
+          <p>Ahhh... uma pena! 😏<br>
+          Essa resposta não é possível!<br><br>
+          Você acabou de cair numa **pegadinha do amor!** 😘💖<br>
+          Pode clicar em "SIM", porque estamos no final feliz!</p>
+          <div class="emoji">💔🙈💘</div>
+        `;
+      }
+    }
+
+    // Função para mover o botão "NÃO" quando passar o mouse
+    function moverBotao() {
+      const btnNao = document.getElementById('btn-nao');
+
+      // Movendo o botão para um local aleatório
+      const maxX = window.innerWidth - btnNao.offsetWidth;
+      const maxY = window.innerHeight - btnNao.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      btnNao.style.position = 'absolute';
+      btnNao.style.left = `${randomX}px`;
+      btnNao.style.top = `${randomY}px`;
+
+      // Adicionando animação suave
+      btnNao.style.transition = 'left 0.5s, top 0.5s';
+    }
+
+    // Criar chuva de corações
+    function criarCoração() {
+      const heartsContainer = document.getElementById('hearts');
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      heart.innerHTML = "❤️";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heartsContainer.removeChild(heart);
+      }, 10000);
+    }
+
+    setInterval(criarCoração, 300);
+  </script>
+
+</body>
+</html>
